@@ -11,22 +11,22 @@ export const ansiColorCodes = new Map([
   ...boldAnsiColors.map((color, i): [string, number] => [color, i])
 ])
 
-export function fgColorBash (color: string): string {
+function getFgColorEscapeCode (color: string): string {
   if(ansiColorCodes.has(color)) {
-    const setaf = `\\[$(setaf ${ansiColorCodes.get(color)})\\]`
+    const colorCode = `3${ansiColorCodes.get(color)}`
     const isBold = boldAnsiColors.includes(color)
     if (isBold) {
-      return `\\[$(tput bold)\\]${setaf}`
+      return `1;${colorCode}`
     } else {
-      return setaf
+      return colorCode
     }
   }
   throw new Error('Coloring currently only supports ANSI colors!')
 }
 
-export function bgColorBash (color: string): string {
+function getBgColorEscapeCode (color: string): string {
   if(ansiColorCodes.has(color)) {
-    return `\\[$(setab ${ansiColorCodes.get(color)})\\]`
+    return `4${ansiColorCodes.get(color)}`
   }
   throw new Error('Coloring currently only supports ANSI colors!')
 }
@@ -44,3 +44,18 @@ export const decorations: Decoration[] = [
   { className: 'text-decoration--italic', escapeCode: '3', text: 'italic' },
   { className: 'text-decoration--line-through', escapeCode: '9', text: 'strikethrough' }
 ]
+
+/*--- Put everything together ---*/
+const resetStylingEscapeCode = '0;10'
+
+const getFullEscapeCode = (parts: string[]) => `\\e[${parts.join(';')}m`
+
+export function styleBashText (text: string, fgColor: string, bgColor: string, decorations: Iterable<Decoration>): string {
+  const escapeCodeParts = [resetStylingEscapeCode]
+  escapeCodeParts.push(getFgColorEscapeCode(fgColor))
+  escapeCodeParts.push(getBgColorEscapeCode(bgColor))
+  for (const decoration of decorations) {
+    escapeCodeParts.push(decoration.escapeCode)
+  }
+  return `${getFullEscapeCode(escapeCodeParts)}${text}`
+}
