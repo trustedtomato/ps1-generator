@@ -1,22 +1,14 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte'
+  import { ansiColors, boldAnsiColors } from '../utils/format-bash'
 
-  const colors = ['000', 'A00', '0A0', 'AA0', '00A', 'A0A', '0AA', 'AAA']
-  const boldColors = colors.map(color => color
-    .replace(/0/g, '5')
-    .replace(/A/g, 'F')
-  )
-  const dispatch = createEventDispatcher()
-  export let value = colors[0]
-  $: {
-    dispatch('input', value)
-  }
+  export let value = ansiColors[0]
+
+  const rows = [ansiColors, boldAnsiColors]
   function createOnClick (color: string) {
     return function () {
       value = color
     }
   }
-  const rows = [colors, boldColors]
 </script>
 
 <div>

@@ -1,7 +1,9 @@
 <script lang="ts">
   import type { Decoration } from '../utils/format-bash'
   import { decorations } from '../utils/format-bash'
+
   export let value: Set<Decoration> = new Set()
+
   function createOnClick (decoration: Decoration) {
     return function () {
       if (value.has(decoration)) {
