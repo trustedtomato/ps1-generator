@@ -1,16 +1,27 @@
-<script>
-  const styles = [
-    { styleAttr: 'text-decoration: underline', text: 'underline' },
-    { styleAttr: 'text-decoration: underline; padding-bottom: 1px; border-bottom: solid 1px', text: 'double underline' },
-    { styleAttr: 'font-style: italic', text: 'italic' },
-    { styleAttr: 'text-decoration: line-through', text: 'strikethrough' },
-  ]
+<script lang="ts">
+  import type { Decoration } from '../utils/format-bash'
+  import { decorations } from '../utils/format-bash'
+  export let value: Set<Decoration> = new Set()
+  function createOnClick (decoration: Decoration) {
+    return function () {
+      if (value.has(decoration)) {
+        value.delete(decoration)
+      } else {
+        value.add(decoration)
+      }
+      value = value
+    }
+  }
 </script>
 
-<div style="display: flex; line-height: 1rem; flex-wrap: wrap; margin: -.25rem;">
-  {#each styles as style}
-    <div style="margin: .25rem; padding: .25rem; border: 1px solid #444">
-      <div style={style.styleAttr}>{style.text}</div>
-    </div>
+<div class="text-decoration-container">
+  {#each decorations as decoration}
+    <button
+      class="text-decoration-tile"
+      style={value.has(decoration) ? 'outline: 2px solid red' : ''}
+      on:pointerdown={createOnClick(decoration)}
+    >
+      <div class={decoration.className}>{decoration.text}</div>
+    </button>
   {/each}
 </div>
