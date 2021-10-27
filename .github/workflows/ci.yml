@@ -39,7 +39,7 @@ jobs:
         run: pnpm run test
 
   deploy:
-    needs: [ci]
+    needs: [test]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     runs-on: ubuntu-latest
