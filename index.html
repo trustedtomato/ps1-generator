@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PS1 generator</title>
+
+
+		
+
+		<link rel="modulepreload" href="/_app/start-ade65e1a.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-7b347ad2.js">
+		<link rel="modulepreload" href="/_app/layout.svelte-0bb255ab.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-05d6e21b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/index.svelte-2bd9ca8c.css">
+
+		<script type="module">
+			import { start } from "/_app/start-ade65e1a.js";
+			start({
+				target: document.querySelector("body"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/layout.svelte-0bb255ab.js"),
+						import("/_app/pages/index.svelte-05d6e21b.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002F",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+<body>
+
+
+
+<h1>PS1 generator</h1>
+
+<main class="main"><div class="workplace"><div class="item-container item-container--source"><span class="item" data-type="0"><span class="item__label">Date in &quot;Weekday Month Date&quot; format (\d)</span>
+        </span><span class="item" data-type="1"><span class="item__label">Hostname up to the first &quot;.&quot; (\h)</span>
+        </span><span class="item" data-type="2"><span class="item__label">Hostname (\H)</span>
+        </span><span class="item" data-type="3"><span class="item__label">Number of jobs currently managed by the shell (\j)</span>
+        </span><span class="item" data-type="4"><span class="item__label">Basename of the shell&#39;s terminal device name (\l)</span>
+        </span><span class="item" data-type="5"><span class="item__label">Name of the shell (\s)</span>
+        </span><span class="item" data-type="6"><span class="item__label">Time in 24-hour HH:MM:SS format (\t)</span>
+        </span><span class="item" data-type="7"><span class="item__label">Time in 12-hour HH:MM:SS format (\T)</span>
+        </span><span class="item" data-type="8"><span class="item__label">Time in 12-hour am/pm format (\@)</span>
+        </span><span class="item" data-type="9"><span class="item__label">Time in 24-hour HH:MM format (\A)</span>
+        </span><span class="item" data-type="10"><span class="item__label">Username of the current user (\u)</span>
+        </span><span class="item" data-type="11"><span class="item__label">Version of Bash (\v)</span>
+        </span><span class="item" data-type="12"><span class="item__label">Version of Bash + patchlevel (\V)</span>
+        </span><span class="item" data-type="13"><span class="item__label">Current working directory (\w)</span>
+        </span><span class="item" data-type="14"><span class="item__label">Current working directory&#39;s basename (\W)</span>
+        </span><span class="item" data-type="15"><span class="item__label">History number of this command (\!)</span>
+        </span><span class="item" data-type="16"><span class="item__label">Command number of this command (\#)</span>
+        </span><span class="item" data-type="17"><span class="item__label"># if the effective UID is 0, otherwise $</span>
+        </span><span class="item" data-type="18"><span class="item__label">Text</span>
+        </span></div>
+    <div class="item-container item-container--board "></div></div>
+
+  <div class="result-and-additional-text"><div style="line-height: 0; white-space: nowrap">Example:
+      <span class="terminal"></span></div>
+    <div style="line-height: 0; white-space: nowrap">PS1 variable:
+      <span class="terminal"></span></div>
+    <h2>How to use</h2>
+    <ul><li>Drag blocks from the first box and drop them into the second to make up your own PS1 variable!
+      </li>
+      <li>To change the order of the blocks, drag and drop them to another place with left-click.
+      </li>
+      <li>To remove a block, drag and drop them outside the second box with left-click.
+      </li>
+      <li>To change the format of a block, right-click on it.
+      </li></ul>
+    For a detailed description of the special characters (the things which start with a backslash (\))
+    check out the <a href="https://www.gnu.org/software/bash/manual/html_node/Controlling-the-Prompt.html">Bash reference manual</a>.
+    <h2>About</h2>
+    This web app was developed with love by <a href="https://github.com/trustedtomato">Tamás Halasi</a>,
+    see the <a href="https://github.com/trustedtomato/ps1-generator">source code on GitHub</a>.
+  </div></main>
+
+<span class="dragged-container"></span>
+
+
+
+			
+		
