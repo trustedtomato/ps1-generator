@@ -1,4 +1,7 @@
 <script lang="ts">
+  import '../global.css'
+  import '../css-remedy.css'
+  
   import { removeChildrenOf } from '../utils/remove-children-of'
 	import { flip } from 'svelte/animate'
   import { scale } from 'svelte/transition'
@@ -48,7 +51,7 @@
     currentlyRecalculatingBoardRects = true
 
     // A hacky way to detect if the flip animations are still running.
-    while (true) {
+    for (;;) {
       await waitForAnimFrame()
       if (board.children.length === 0) {
         break
@@ -144,7 +147,7 @@
             // there are elements of varying widths in multiple rows,
             // in which the heights of the elements are the same.
 
-            let smallestDY: number = Infinity
+            let smallestDY = Infinity
             let smallestDYRect
             for (const boardItemRect of boardItemRects) {
               const dTop = Math.abs(boardItemRect.top - pageY)
@@ -164,7 +167,7 @@
             const yAccuracy = 5
             const boardItemRectsInRow = boardItemRects.filter(rect => Math.abs(rect.top - smallestDYRect.top) < yAccuracy)
 
-            let smallestDX: number = Infinity
+            let smallestDX = Infinity
             let isCloserToTheLeft = true
             let smallestDXRect
             for (const boardItemRect of boardItemRectsInRow) {
@@ -217,8 +220,7 @@
   }
 
   function onSourceItemPointerdown (e: PointerEvent) {
-    // @ts-ignore
-    const type = e.currentTarget?.dataset?.type
+    const type = (e.currentTarget as HTMLElement)?.dataset?.type
     if (typeof type !== 'string') {
       return
     }
@@ -316,7 +318,7 @@
           <span class="item__label">{item.label}</span>
           <div class="format-dialog" style={formatDialogTargetId === item.id ? (formatDialogSnapToRight ? 'right: 0' : '') : 'display: none'}>
             {#if getBoardItemData(item).customText.length > 0}         
-              <label>Content:</label>
+              <span>Content:</span>
               {#each getBoardItemData(item).customText as str}
                 <input value={str} on:input={e => str = e.target.value}>
               {/each}
