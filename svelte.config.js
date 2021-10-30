@@ -10,6 +10,9 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: 'body',
+		paths: {
+			base: process.env.BASE || ''
+		},
 		adapter: adapter(),
 		prerender: {
 			onError: 'continue'

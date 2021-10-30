@@ -58,7 +58,7 @@ jobs:
       - name: Install dependencies
         run: pnpm i
       - name: Build project
-        run: pnpm run build
+        run: BASE=/ps1-generator pnpm run build
       - name: Deploy website
         uses: peaceiris/actions-gh-pages@v3
         with:
